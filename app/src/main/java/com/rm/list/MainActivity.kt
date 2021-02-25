@@ -5,8 +5,11 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity() {
-    private var noticias: MutableList<Noticia> = mutableListOf()
+class MainActivity : AppCompatActivity(), NoticiasAdaptador.NoticiasHolder.ClickListener{
+    private lateinit var noticias: MutableList<Noticia>
+    private val adaptador = NoticiasAdaptador(this)
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,13 +17,19 @@ class MainActivity : AppCompatActivity() {
 
         noticias.add(Noticia("Prueba", "http://gtpreviene.researchmobile.co:3000/uploads/clh4lmsqs9xk5uah_juanito.jpeg"))
 
-
-        val adaptador: NoticiasAdaptador = NoticiasAdaptador(noticias)
-
         val listaNoticias: RecyclerView = findViewById(R.id.listaNoticias)
         listaNoticias.layoutManager = LinearLayoutManager(this)
         listaNoticias.adapter = adaptador
 
 
+    }
+
+    override fun onItemClicked(position: Int) {
+
+    }
+
+    override fun onItemLongClicked(position: Int): Boolean {
+
+        return true
     }
 }

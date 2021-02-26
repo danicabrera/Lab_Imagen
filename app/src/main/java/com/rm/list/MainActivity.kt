@@ -2,6 +2,10 @@ package com.rm.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -10,10 +14,10 @@ class MainActivity : AppCompatActivity(), NoticiasAdaptador.NoticiasHolder.Click
     private val adaptador = NoticiasAdaptador(this)
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         noticias.add(Noticia("Prueba", "http://gtpreviene.researchmobile.co:3000/uploads/clh4lmsqs9xk5uah_juanito.jpeg"))
 
@@ -22,6 +26,13 @@ class MainActivity : AppCompatActivity(), NoticiasAdaptador.NoticiasHolder.Click
         listaNoticias.adapter = adaptador
 
 
+    }
+    fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onItemClicked(position: Int) {
@@ -32,4 +43,7 @@ class MainActivity : AppCompatActivity(), NoticiasAdaptador.NoticiasHolder.Click
 
         return true
     }
+
 }
+
+
